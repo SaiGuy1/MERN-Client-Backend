@@ -1,5 +1,5 @@
 # set up
-- In current dir(MERN-Client-Backed),
+1. In current dir(MERN-Client-Backed),
 run 
 ```
 $ ./setup.sh
@@ -16,7 +16,9 @@ and then run ./setup.sh again
 ```
 $ ./setup.sh
 ```
+2. you should see a .env file and add random string right after the JWT_SECRET=YOUR_RANDOM_STRING
 
+and you should be good to go!
 
 ### JWT token
 1. The route for signup and login
