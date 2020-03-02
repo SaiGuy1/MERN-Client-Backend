@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
+const cors = require('cors');
 
 
 //access env file
@@ -13,6 +14,11 @@ const routes = require('./routes');
 
 
 // --------Middlewares  -------//
+const coresOptions = {
+  origin: ['http://localhost:3000'],
+  optionsSuccessStatus: 200 //legacy browser choke on status 204 
+}
+app.use(cors(coresOptions))
 
 //BodyParser
 app.use(bodyParser.json());
@@ -28,8 +34,7 @@ app.get('/profile/:user', (req, res) => {
   res.send('<h1>This is Profile</h1>')
 })
 app.use('/api/v1/auth', routes.auth);
-// app.use('/api/v1/post', routes.post);
-app.use('/api/v1/users', routes.users);
+app.use('/api/v1/profile', routes.users);
 
 
 app.listen(PORT, () =>

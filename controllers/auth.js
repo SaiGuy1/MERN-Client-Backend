@@ -48,7 +48,7 @@ const signup = (req, res) => {
 
         db.User.create(newUser, (err, savedUser) => {
           if (err) return res.status(500).json({ status: 500, message: err });
-          jwt.sign({ uid: newUser._id }, `${process.env.JWT_SECRET}`, { expiresIn: '10h' }, (err, jwt) => {
+          jwt.sign({foo: savedUser._id }, `${process.env.JWT_SECRET}`, { expiresIn: '10h' }, (err, jwt) => {
             if (err) return res.status(500).json({
               status: 503,
               errors: [{ message: 'access forbidden' }],
@@ -92,7 +92,7 @@ const login = (req, res) => {
 
       if (isMatch) {
         /* jwt */
-        jwt.sign({ uid: foundUser._id }, `${process.env.JWT_SECRET}`, { expiresIn: '10h' }, (err, jwt) => {
+        jwt.sign({foo: foundUser._id }, `${process.env.JWT_SECRET}`, { expiresIn: '10h' }, (err, jwt) => {
           if (err) return res.status(500).json({
             status: 503,
             errors: [{ message: 'access forbidden' }],
