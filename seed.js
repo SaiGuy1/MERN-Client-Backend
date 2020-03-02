@@ -53,5 +53,3 @@ db.Location.deleteMany({}, (err, locations)=>{
     console.log(`created ${locations.length} locations`)
   })
 })
-
-process.exit(0);
