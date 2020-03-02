@@ -31,7 +31,27 @@ const show = async (req, res) => {
     };
 };
 
+const showAll = async (req, res) => {
+    try {
+        const allPosts = await db.Post.find({user: req.curUserId})
+        let postList = [];
+        for (let i = 0; i < allPosts.length; i++) {
+            let responseObj = {
+                id: allPosts[i]._id,
+                title: allPosts[i].title,
+                content: allPosts[i].content,
+                createdAt: allPosts[i].createdAt,
+            }
+            postList.push(responseObj)
+        };
+        res.status(200).json(postList);
+    } catch (error) {
+        return res.status(500).json({ message: 'Something went wrong, try again', error: error });
+    };
+};
+
 module.exports = {
     create,
-    show
+    show,
+    showAll
 }
