@@ -1,3 +1,21 @@
+# set up
+- In current dir(MERN-Client-Backed),
+run 
+```
+$ ./setup.sh
+```
+you will probably run into an error likr below
+```
+permission denied: ./setup.sh
+```
+you have to run 
+```
+$ chmod 755 ./setup.sh
+```
+and then run ./setup.sh again
+```
+$ ./setup.sh
+```
 
 
 ### JWT token
