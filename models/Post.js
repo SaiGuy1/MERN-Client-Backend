@@ -6,9 +6,6 @@ const PostSchema = mongoose.Schema({
         required: [true, 'A title is required to create a Post'],
         maxlength: [50, 'Post title cannot exceed 50 characters']
     },
-    img: {
-
-    },
     content: {
         type: String,
         required: [true, 'Content is required to create a Post'],
