@@ -1,16 +1,15 @@
 const jwt = require('jsonwebtoken');
-const db = require('../models');
+require('dotenv').config();
 
 
 const verify = (req, res, next) => {
   const header = req.headers.authorization;
-
   if (typeof header !== 'undefined') {
     const bearer = header.split(' ');
     const token = bearer[1];
     jwt.verify(token, `${process.env.JWT_SECRET}`, function (err, decoded) {
       if (err) return res.status(400).json({ message: 'You are not authorized' });
-      req.curUserId = decoded.uid;
+      req.curUserId = decoded.foo;
       next();
     })
   } else {
