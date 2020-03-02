@@ -27,9 +27,13 @@ app.get('/', (req, res) => {
 app.get('/profile/:user', (req, res) => {
   res.send('<h1>This is Profile</h1>')
 })
+
+// Authorization Routes
 app.use('/api/v1/auth', routes.auth);
-// app.use('/api/v1/post', routes.post);
+// User Routes
 app.use('/api/v1/users', routes.users);
+// Post Routes
+app.use('api/v1/posts', routes.posts);
 
 
 app.listen(PORT, () =>

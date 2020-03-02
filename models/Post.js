@@ -11,10 +11,10 @@ const PostSchema = mongoose.Schema({
         required: [true, 'Content is required to create a Post'],
         maxlength: [700, 'Content cannot exceed 700 characters']
     },
-    location: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Location'
-    },
+    // location: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Location'
+    // },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
