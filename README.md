@@ -52,3 +52,17 @@ api/v1/location
       country
       city
     }
+
+
+### Create Post Controller:
+api/v1/posts
+  - remember to send token via header, see above
+-POST
+  - req: {
+    title:'',
+    content: '',
+  }
+
+##### note
+  - For db.Post.create, pass in a single object as an argument that contains the 'req.body' as well as the 'req.curUserId'.
+  - Ensure you DO NOT share the userId by creating a 'responseObj' object that only contains the (A) post id, (B) title, (C) content, (D) createdAt.

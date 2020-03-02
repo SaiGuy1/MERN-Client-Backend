@@ -14,5 +14,6 @@ mongoose.connect(dbUrl, {
 
 module.exports = {
   User: require('./User'),
-  Location: require('./Location')
+  Location: require('./Location'),
+  Post: require('./Post'),
 };
