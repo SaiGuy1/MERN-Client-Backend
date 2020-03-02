@@ -39,7 +39,7 @@ app.use('/api/v1/auth', routes.auth);
 // User Routes
 app.use('/api/v1/users', routes.users);
 // Post Routes
-app.use('api/v1/posts', routes.posts);
+app.use('/api/v1/posts', routes.posts);
 // Profile Routes
 app.use('/api/v1/profile', routes.users);
 
