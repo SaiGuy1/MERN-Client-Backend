@@ -1,5 +1,6 @@
-### JWT token
 
+
+### JWT token
 1. The route for signup and login
 - Request
   - log in : api/v1/auth/login
@@ -23,3 +24,31 @@
     'authorization': `bearer ${token}`
   }}
 or you will get an err.
+
+
+### user profile
+route: api/v1/profile/
+  - remember to send token via header, see above
+- GET
+  - req: {no body needed}
+  - res: {
+    username
+    email
+    location
+    createdAt
+  }
+- PUT
+  - req: {whatever is update}
+  - res: {update profile data}
+
+### Location
+
+api/v1/location
+- GET
+  - req()
+  - res:
+    - {
+      _id
+      country
+      city
+    }

@@ -1,4 +1,5 @@
 module.exports = {
   auth: require('./auth'),
-  users: require('./users'),
+  users: require('./profile'),
+  location: require('./location')
 };
