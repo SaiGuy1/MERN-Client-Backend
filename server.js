@@ -16,6 +16,7 @@ const routes = require('./routes');
 // --------Middlewares  -------//
 const coresOptions = {
   origin: ['http://localhost:3000'],
+  credentials: true,
   optionsSuccessStatus: 200 //legacy browser choke on status 204 
 }
 app.use(cors(coresOptions))
@@ -42,6 +43,7 @@ app.use('/api/v1/users', routes.users);
 app.use('/api/v1/posts', routes.posts);
 // Profile Routes
 app.use('/api/v1/profile', routes.users);
+app.use('/api/v1/location', routes.location);
 
 
 app.listen(PORT, () =>
