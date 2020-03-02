@@ -23,3 +23,7 @@
     'authorization': `bearer ${token}`
   }}
 or you will get an err.
+
+3. Create Post Controller:
+  - For db.Post.create, pass in a single object as an argument that contains the 'req.body' as well as the 'req.curUserId'.
+  - Ensure you DO NOT share the userId by creating a 'responseObj' object that only contains the (A) post id, (B) title, (C) content, (D) createdAt.

@@ -33,7 +33,14 @@ app.get('/', (req, res) => {
 app.get('/profile/:user', (req, res) => {
   res.send('<h1>This is Profile</h1>')
 })
+
+// Authorization Routes
 app.use('/api/v1/auth', routes.auth);
+// User Routes
+app.use('/api/v1/users', routes.users);
+// Post Routes
+app.use('/api/v1/posts', routes.posts);
+// Profile Routes
 app.use('/api/v1/profile', routes.users);
 
 
