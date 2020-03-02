@@ -1,5 +1,26 @@
-### JWT token
+# set up
+1. In current dir(MERN-Client-Backed),
+run 
+```
+$ ./setup.sh
+```
+you will probably run into an error likr below
+```
+permission denied: ./setup.sh
+```
+you have to run 
+```
+$ chmod 755 ./setup.sh
+```
+and then run ./setup.sh again
+```
+$ ./setup.sh
+```
+2. you should see a .env file and add random string right after the JWT_SECRET=YOUR_RANDOM_STRING
 
+and you should be good to go!
+
+### JWT token
 1. The route for signup and login
 - Request
   - log in : api/v1/auth/login
@@ -24,6 +45,44 @@
   }}
 or you will get an err.
 
-3. Create Post Controller:
+
+### user profile
+route: api/v1/profile/
+  - remember to send token via header, see above
+- GET
+  - req: {no body needed}
+  - res: {
+    username
+    email
+    location
+    createdAt
+  }
+- PUT
+  - req: {whatever is update}
+  - res: {update profile data}
+
+### Location
+
+api/v1/location
+- GET
+  - req()
+  - res:
+    - {
+      _id
+      country
+      city
+    }
+
+
+### Create Post Controller:
+api/v1/posts
+  - remember to send token via header, see above
+-POST
+  - req: {
+    title:'',
+    content: '',
+  }
+
+##### note
   - For db.Post.create, pass in a single object as an argument that contains the 'req.body' as well as the 'req.curUserId'.
   - Ensure you DO NOT share the userId by creating a 'responseObj' object that only contains the (A) post id, (B) title, (C) content, (D) createdAt.
