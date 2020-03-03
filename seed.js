@@ -1,12 +1,17 @@
 const db = require('./models');
+const bcrypt = require('bcryptjs');
 
-const testing_User = {
+const testing_User = [{
   username: 'test123',
   email: 'test123@gmail.com',
   password: '123456789'
+},
+{
+  username: 'test456',
+  email: 'test456@gmail.com',
+  password: '987654321'
 }
-
-
+]
 
 const location_list = [
   {
@@ -99,33 +104,60 @@ const test_posts = [
     content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidun cum opuos accusamus perferendis distinctio ipsam rem, rerum ea!',
   }
 ]
-db.User.deleteMany({}, (err, allUser)=> {
-  db.Post.deleteMany({}, (err, allPost)=> {
-    db.User.create(testing_User, (err, newUser) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log('test_posts',test_posts);
-      test_posts.forEach(post => {
-        post.user = newUser._id
-        console.log(post);
-        db.Post.create(post,(err, newPost)=> {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        })
-      })
-      
-      console.log('create a super user');
-      console.log(`with email of ${newUser.email} and password of 123456789`)
-      console.log(`created total ${test_posts.length} posts!`)
-    
-    })
-  })
+
+
+
+
+
+db.User.deleteMany({}, (err, allUser) => {
+  db.Post.deleteMany({}, (err, allPost) => {
+    testing_User.forEach(user => {
+      bcrypt.genSalt(10, (err, salt) => {
+        if (err)
+          return res.status(500).json({
+            status: 500,
+            message: 'Something went wrong. Please try again'
+          });
   
-})
+        // Hash User Password
+        bcrypt.hash(user.password, salt, (err, hash) => {
+          if (err)
+            return res.status(500).json({
+              status: 500,
+              message: 'Something went wrong. Please try again'
+            });
+  
+          const newUser = {
+            username: user.username,
+            email: user.email,
+            password: hash
+          };
+  
+          db.User.create(newUser, (err, savedUser) => {
+            if (err) return res.status(500).json({ status: 500, message: err });
+            //put post create
+            test_posts.forEach(post => {
+              post.user = savedUser._id
+              console.log(post.user);
+              console.log(post);
+              db.Post.create(post, (err, newPost) => {
+                if (err) {
+                  console.log(err);
+                  return;
+                }
+              })
+            })
+            console.log('create a super user');
+            console.log(`with email of ${user.email} and password of ${user.password}`)
+            console.log(`created total ${test_posts.length} posts for ${user.username}!`)
+  
+          });
+        });
+      });
+    })
+    // Generate Salt
+    
 
-
-
-
+  
+  });
+});
