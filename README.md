@@ -1,10 +1,14 @@
 # set up
-1. In current dir(MERN-Client-Backed),
+1. run
+```
+npm i
+```
+2. In current dir(MERN-Client-Backed),
 run 
 ```
 $ ./setup.sh
 ```
-you will probably run into an error likr below
+you will probably run into an error like below
 ```
 permission denied: ./setup.sh
 ```
@@ -16,7 +20,7 @@ and then run ./setup.sh again
 ```
 $ ./setup.sh
 ```
-2. you should see a .env file and add random string right after the JWT_SECRET=YOUR_RANDOM_STRING
+3. you should see a .env file and add random string right after the JWT_SECRET=YOUR_RANDOM_STRING
 
 and you should be good to go!
 
@@ -25,14 +29,14 @@ and you should be good to go!
 - Request
   - log in : api/v1/auth/login
     - body: {
-      username: '',
-      email: '',
-      password: ''
+      username,
+      email,
+      password
     }
   - sign up: api/v1/auth/signup
     - body: {
-        email: '',
-        password: ''
+        email,
+        password,
       }
 - Response
   - you will get a response with JWT token
@@ -52,25 +56,29 @@ route: api/v1/profile/
 - GET
   - req: {no body needed}
   - res: {
-    username
-    email
-    location
-    createdAt
+    username,
+    email,
+    location,
+    createdAt,
   }
+route: api/v1/profile/update
 - PUT
   - req: {whatever is update}
-  - res: {update profile data}
+  - res: {updated profile data}
 
 ### Location
+
+##### note: Dalton said that img for location is not required
 
 api/v1/location
 - GET
   - req()
   - res:
     - {
-      _id
-      country
-      city
+      _id,
+      country,
+      city,
+      cityId
     }
 
 
