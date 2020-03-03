@@ -6,14 +6,7 @@ const testing_User = {
   password: '123456789'
 }
 
-db.User.create(testing_User, (err, newUser)=> {
-  if(err) {
-    console.log(err);
-    return;
-  }
-  console.log('create a super user');
-  console.log(`with email of ${newUser.email} and password of 123456789`)
-})
+
 
 const location_list = [
   {
@@ -68,9 +61,13 @@ const location_list = [
   }
 ]
 
-db.Location.deleteMany({}, (err, locations)=>{
-  db.Location.create(location_list, (err, locations)=>{
-    if(err) {
+db.Location.deleteMany({}, (err, locations) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  db.Location.create(location_list, (err, locations) => {
+    if (err) {
       console.log(err);
       return;
     }
@@ -82,48 +79,53 @@ db.Location.deleteMany({}, (err, locations)=>{
 
 const test_posts = [
   {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
-    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatum nam dolorum error odit odio quidem repellat consectetur temporibus, accusantium veniam quas, tempora sunt rerum! Est facilis molestiae cum optio animi ut minus. Qui, neque deleniti quasi eius hic non adipisci repellendus ducimus, autem totam iure eum aliquam accusamus blanditiis commodi corrupti consequatur error sunt? Quidem, ipsa. Illum autem necessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 6
+    title: "et consectetur adipisicing elit. Animi, nobis.",
+    content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit,cessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!",
   },
   {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
-    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatum nam dolorum error odit odio quidem repellat consectetur temporibus, accusantium veniam quas, tempora sunt rerum! Est facilis molestiae cum optio animi ut minus. Qui, neque deleniti quasi eius hic non adipisci repellendus ducimus, autem totam iure eum aliquam accusamus blanditiis commodi corrupti consequatur error sunt? Quidem, ipsa. Illum autem necessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 5
+    title: 'et consectetur adipisicing elit. Animi, nobis.',
+    content: 'Lorem ipsum dolor sit amet consectetur sunt rerum! Est facilis molestiae cum optio animi ut minus. Qui, neque deleniti quasi eius hic non adipisci repellendus duero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
   },
   {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
-    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatum nam dolorum error odit odio quidem repellat consectetur temporibus, accusantium veniam quas, tempora sunt rerum! Est facilis molestiae cum optio animi ut minus. Qui, neque deleniti quasi eius hic non adipisci repellendus duero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 1
+    title: 'et consectetur adipisicing elit. Animi, nobis.',
+    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatumvoluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
   },
   {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
-    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatum nam dolorum error odit odio quidem repellat consectetur temporibus, a deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 10
-  },
-  {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
+    title: 'et consectetur adipisicing elit. Animi, nobis.',
     content: 'tem necessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 5
   },
   {
-    title: '111Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, nobis.',
-    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatum nam dolorum error odit odio quidem repellat consectetur temporibus, accusantium veniam quas, tempora sunt rerum! Est facilis molestiae cum opuos accusamus perferendis distinctio ipsam rem, rerum ea!',
-    cityId: 8
+    title: 't. Animi, nobis.',
+    content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidun cum opuos accusamus perferendis distinctio ipsam rem, rerum ea!',
   }
 ]
-
-db.User.findOne({email:"test123@gmail.com"},(err, findUser)=> {
-  if(err) {
-    console.log(err);
-    return;
-  }
-  db.Post.create({test_posts}, (err, newPosts)=> {
-    if(err) {
-      console.log(err);
-      return;
-    }
-    console.log('create fact post');
-    console.log(`created ${test_post.length} locations`)
+db.User.deleteMany({}, (err, allUser)=> {
+  db.Post.deleteMany({}, (err, allPost)=> {
+    db.User.create(testing_User, (err, newUser) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('test_posts',test_posts);
+      test_posts.forEach(post => {
+        post.user = newUser._id
+        console.log(post);
+        db.Post.create(post,(err, newPost)=> {
+          if (err) {
+            console.log(err);
+            return;
+          }
+        })
+      })
+      
+      console.log('create a super user');
+      console.log(`with email of ${newUser.email} and password of 123456789`)
+      console.log(`created total ${test_posts.length} posts!`)
+    
+    })
   })
+  
 })
+
+
+
+
