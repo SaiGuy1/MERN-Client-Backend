@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema;
 const PostSchema = mongoose.Schema({
     title: {
         type: String,
@@ -11,12 +11,12 @@ const PostSchema = mongoose.Schema({
         required: [true, 'Content is required to create a Post'],
         maxlength: [700, 'Content cannot exceed 700 characters']
     },
-    // location: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Location'
-    // },
+    location: {
+        type: Schema.Types.ObjectId,
+        ref: 'Location'
+    },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     },
     createdAt: {

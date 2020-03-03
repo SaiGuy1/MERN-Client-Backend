@@ -6,6 +6,9 @@ const LocationSchema = mongoose.Schema ({
   },
   city: {
     type:String,
+  },
+  cityId: {
+    type: Number,
   }
 })
 
