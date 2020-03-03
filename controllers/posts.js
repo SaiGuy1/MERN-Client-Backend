@@ -31,7 +31,7 @@ const show = async (req, res) => {
     };
 };
 
-const showAll = async (req, res) => {
+const userAllPosts = async (req, res) => {
     try {
         const allPosts = await db.Post.find({user: req.curUserId})
         let postList = [];
@@ -50,8 +50,19 @@ const showAll = async (req, res) => {
     };
 };
 
+const showAll = async (req, res) => {
+    try {
+        const allPosts = await db.Post.find({})
+        res.status(200).json(allPosts);
+    } catch (error) {
+        return res.status(500).json({message: 'Something went wrong, try again', error: error});
+    }
+}
+
+
 module.exports = {
     create,
     show,
+    userAllPosts,
     showAll
 }
