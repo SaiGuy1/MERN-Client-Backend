@@ -78,7 +78,6 @@ const update = async (req, res) => {
     };
 };
 
-<<<<<<< HEAD
 const destroy = async (req, res) => {
     try {
         const deletedPost = await db.Post.findByIdAndDelete(req.params.id);
@@ -87,42 +86,12 @@ const destroy = async (req, res) => {
         res.status(500).json({message: 'Something went wrong, please try again', error: error});
     };
 };
-=======
-const showcity = async(req, res) => {
-    try {
-        const CityPosts =  await db.Post.find({location: req.params.id}).populate('location').populate('user')
-        res.status(200).json(CityPosts);
-    } catch(error) {
-        return res.status(500).json({ message: 'Something went wrong, try again', error: error });
-    }
-
-}
-// const update = async (req, res) => {
-//     try {
-//         const updatedPost = await db.Post.findOneAndUpdate(...req.body)
-//         const responseObj = {
-//             id: updatedPost._id,
-//             title: updatedPost.title,
-//             content: updatedPost.content,
-//             location: updatedPost.location,
-//             createdAt: updatedPost.createdAt,
-//         }
-//         res.status(200).json(responseObj);
-//     } catch (error) {
-//         return res.status(500).json({message: 'Something went wrong, please try again', error: error})
-//     }
-// }
->>>>>>> submaster
 
 module.exports = {
     create,
     show,
     userAllPosts,
     showAll,
-<<<<<<< HEAD
     update,
     destroy
-=======
-    showcity
->>>>>>> submaster
 }

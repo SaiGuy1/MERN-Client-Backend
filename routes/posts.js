@@ -5,15 +5,8 @@ const ctrl = require('../controllers');
 
 // PATH = '/api/v1/posts'
 
-<<<<<<< HEAD
 // Controller To Show All Posts
 // See README.
-=======
-// Controller To show Post for related location
-router.get('/city/:id', ctrl.posts.showcity)
-
-// Controller To Show All Posts (Regardless Of User)
->>>>>>> submaster
 router.get('/', ctrl.posts.showAll);
 
 // Controller For Single User To Show All Of Their Own Posts
