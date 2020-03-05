@@ -3,16 +3,17 @@ const db = require('../models');
 const create = async (req, res) => {
     try {
         // NOTE - 'curUserId' grabs User ID from jwt token
-        const createdPost = await db.Post.create({...req.body, user: req.curUserId});
+        const createdPost = await db.Post.create({ ...req.body, user: req.curUserId });
         const responseObj = {
             id: createdPost._id,
             title: createdPost.title,
             content: createdPost.content,
             createdAt: createdPost.createdAt,
+            location: createdPost.location,
         };
         res.status(200).json(responseObj);
-    } catch (error) { 
-        return res.status(500).json({message: 'Something went wrong, try again', error: error});
+    } catch (error) {
+        return res.status(500).json({ message: 'Something went wrong, try again', error: error });
     };
 };
 
@@ -27,13 +28,13 @@ const show = async (req, res) => {
         };
         res.status(200).json(Post);
     } catch (error) {
-        return res.status(500).json({message: 'Something went wrong, try again', error: error});
+        return res.status(500).json({ message: 'Something went wrong, try again', error: error });
     };
 };
 
-const showAll = async (req, res) => {
+const userAllPosts = async (req, res) => {
     try {
-        const allPosts = await db.Post.find({user: req.curUserId})
+        const allPosts = await db.Post.find({ user: req.curUserId })
         let postList = [];
         for (let i = 0; i < allPosts.length; i++) {
             let responseObj = {
@@ -50,8 +51,34 @@ const showAll = async (req, res) => {
     };
 };
 
+const showAll = async (req, res) => {
+    try {
+        const allPosts = await db.Post.find(req.query)
+        res.status(200).json(allPosts);
+    } catch (error) {
+        return res.status(500).json({ message: 'Something went wrong, try again', error: error });
+    }
+}
+
+// const update = async (req, res) => {
+//     try {
+//         const updatedPost = await db.Post.findOneAndUpdate(...req.body)
+//         const responseObj = {
+//             id: updatedPost._id,
+//             title: updatedPost.title,
+//             content: updatedPost.content,
+//             location: updatedPost.location,
+//             createdAt: updatedPost.createdAt,
+//         }
+//         res.status(200).json(responseObj);
+//     } catch (error) {
+//         return res.status(500).json({message: 'Something went wrong, please try again', error: error})
+//     }
+// }
+
 module.exports = {
     create,
     show,
-    showAll
+    userAllPosts,
+    showAll,
 }
