@@ -78,6 +78,14 @@ const update = async (req, res) => {
     }
 }
 
+const showcity = async (req, res)=> {
+    try{
+        const CityPosts = await db.Post.find({location: req.params.id}).populate('location').populate('user')
+        res.status(200).json(CityPosts);
+    } catch {
+        return res.status(500).json({ message: 'Something went wrong, try again', error: error })
+    }
+}
 // const update = async (req, res) => {
 //     try {
 //         if (req.curUserId = Post.user) {
@@ -110,6 +118,7 @@ module.exports = {
     show,
     userAllPosts,
     showAll,
+    showcity,
     update,
     destroy
 }

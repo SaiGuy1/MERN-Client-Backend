@@ -8,7 +8,7 @@ const ctrl = require('../controllers');
 // Controller To Show All Posts
 // See README.
 router.get('/', ctrl.posts.showAll);
-
+router.get('/city/:id', ctrl.posts.showcity)
 // Controller To Show Single Post
 router.get('/:id', ctrl.posts.show);
 // Controller For Single User To Show All Of Their Own Posts
