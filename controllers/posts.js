@@ -19,11 +19,13 @@ const create = async (req, res) => {
 
 const show = async (req, res) => {
     try {
-        const foundPost = await db.Post.findById(req.params.id)
+        const foundPost = await db.Post.findById(req.params.id).populate('location').populate('user')
         const Post = {
             id: foundPost._id,
             title: foundPost.title,
             content: foundPost.content,
+            user: foundPost.user,
+            location: foundPost.location,
             createdAt: foundPost.createdAt,
         };
         res.status(200).json(Post);
