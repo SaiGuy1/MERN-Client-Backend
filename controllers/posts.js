@@ -61,18 +61,15 @@ const showAll = async (req, res) => {
 };
 
 const update = async (req, res) => {
-
     try {
         let foundPost = await db.Post.findById(req.params.id);
         console.log(foundPost.user)
         console.log(req.curUserId)
         if (foundPost.user == req.curUserId) {
-            // console.log('reqBODY', req.body);
             foundPost.title = req.body.title;
             foundPost.content = req.body.content;
             foundPost.location = req.body.location;
             foundPost.save();
-            // console.log(foundPost);
             const responseObj = {
                 id: foundPost.id,
                 title: foundPost.title,
@@ -80,7 +77,6 @@ const update = async (req, res) => {
                 location: foundPost.location,
                 createdAt: foundPost.createdAt,
             };
-            // console.log('responseObj', responseObj)
             res.status(200).json(responseObj)
         } else {
             return res.status(401).json({message: 'You are not authorized to complete this action'})
@@ -92,8 +88,20 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
     try {
-        const deletedPost = await db.Post.findByIdAndDelete(req.params.id);
-        res.status(200).json(deletedPost);
+        const foundPost = await db.Post.findById(req.params.id);
+        console.log(foundPost)
+        if (foundPost.user == req.curUserId) {
+            responseObj = {
+                id: foundPost.id,
+                title: foundPost.title,
+                content: foundPost.content,
+                location: foundPost.location,
+            }
+            await db.Post.findByIdAndDelete(foundPost._id);
+            res.status(200).json(responseObj)
+        } else {
+            return res.status(401).json({ message: 'You are not authorized to complete this action' })
+        }
     } catch (error) {
         res.status(500).json({message: 'Something went wrong, please try again', error: error});
     };
