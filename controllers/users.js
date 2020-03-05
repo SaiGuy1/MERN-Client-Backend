@@ -20,7 +20,7 @@ const show = async (req, res) => {
 const update = async(req, res) => {
 	try{
 		const updatedUser = await db.User.findByIdAndUpdate(req.curUserId, req.body, {new:true}).populate('location')
-		res.status(200).json({updatedUser});
+		res.status(200).json(updatedUser);
 	}
 	catch (err){
 		return res.error(500, "something is wrong. try again");

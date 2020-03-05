@@ -5,6 +5,9 @@ const ctrl = require('../controllers');
 
 // PATH = '/api/v1/posts'
 
+// Controller To show Post for related location
+router.get('/city/:id', ctrl.posts.showcity)
+
 // Controller To Show All Posts (Regardless Of User)
 router.get('/', ctrl.posts.showAll);
 
@@ -16,6 +19,7 @@ router.post('/create', mw.auth.verify, ctrl.posts.create);
 
 // Controller To Show Single Post
 router.get('/:id', mw.auth.verify, ctrl.posts.show);
+
 
 
 
