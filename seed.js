@@ -17,52 +17,62 @@ const location_list = [
   {
     country: "United States",
     city: "San Francisco",
-    cityId: 1
+    cityId: 1,
+    img: "https://cdn.britannica.com/s:800x450,c:crop/31/204431-138-B5008F47/time-lapse-video-San-Francisco.jpg"
   },
   {
     country: "United States",
     city: "Seattle",
-    cityId: 2
+    cityId: 2,
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Seattle_Kerry_Park_Skyline.jpg/1200px-Seattle_Kerry_Park_Skyline.jpg"
   },
   {
     country: "United States",
     city: "New York",
-    cityId: 3
+    cityId: 3,
+    img: "https://www.gannett-cdn.com/media/2018/12/15/USATODAY/usatsports/MotleyFool-TMOT-657f0436-21e9af86.jpg"
   },
   {
     country: "France",
     city: "Paris",
-    cityId: 4
+    cityId: 4,
+    img: "https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/newsletter/eiffel-tower-in-paris-151-medium.jpg?1564742900"
   },
   {
     country: "Canada",
     city: "Vancouver",
-    cityId: 5
+    cityId: 5,
+    img:"https://lp-cms-production.imgix.net/2019-06/27860479.jpg?fit=crop&q=40&sharp=10&vib=20&auto=format&ixlib=react-8.6.4"
   },
   {
     country: "Germany",
     city: "Berlin",
-    cityId: 6
+    cityId: 6,
+    img:"https://www.planetware.com/photos-large/D/east-berlin-former-0.jpg"
   },
   {
     country: "The Netherland",
     city: "Amsterdam",
-    cityId: 7
+    cityId: 7,
+    img: "https://cdn.civitatis.com/paises-bajos/amsterdam/galeria/casas-barco-amsterdam.jpg"
   },
   {
     country: "England",
     city: "London",
-    cityId: 8
+    cityId: 8,
+    img:"https://lp-cms-production.imgix.net/2019-06/55425108.jpg?fit=crop&q=40&sharp=10&vib=20&auto=format&ixlib=react-8.6.4"
   },
   {
     country: "Australia",
     city: "Sydney",
-    cityId: 9
+    cityId: 9,
+    img: "https://www.sydneyoperahouse.com/content/dam/soh/homepage-and-whats-hot/tiles/SOH_74_1600x1200.jpg"
   },
   {
     country: "Spain",
     city: "Barcelona",
-    cityId: 10
+    cityId: 10,
+    img:"https://media.timeout.com/images/103855471/630/472/image.jpg"
   }
 ]
 

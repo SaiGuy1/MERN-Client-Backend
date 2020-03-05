@@ -9,6 +9,9 @@ const LocationSchema = mongoose.Schema ({
   },
   cityId: {
     type: Number,
+  },
+  img: {
+    type: String
   }
 })
 
