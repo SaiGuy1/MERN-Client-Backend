@@ -19,11 +19,7 @@ const create = async (req, res) => {
 
 const show = async (req, res) => {
     try {
-<<<<<<< HEAD
         const foundPost = await db.Post.findById(req.params.id).populate('location').populate('user')
-=======
-        const foundPost = await db.Post.findById(req.params.id);
->>>>>>> submaster
         const Post = {
             id: foundPost._id,
             title: foundPost.title,
