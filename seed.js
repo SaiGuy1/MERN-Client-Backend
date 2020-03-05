@@ -76,20 +76,6 @@ const location_list = [
   }
 ]
 
-db.Location.deleteMany({}, (err, locations) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  db.Location.create(location_list, (err, locations) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('recreated all location');
-    console.log(`created ${locations.length} locations`)
-  })
-})
 
 
 const test_posts = [
@@ -116,58 +102,94 @@ const test_posts = [
 ]
 
 
+// db.Location.deleteMany({}, (err, locations) => {
+//   if (err) {
+//     console.log(err);
+//     return;
+//   }
+//   db.Location.create(location_list, (err, locations) => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//     console.log('recreated all location');
+//     console.log(`created ${locations.length} locations`)
+//   })
+// })
 
 
-
-db.User.deleteMany({}, (err, allUser) => {
-  db.Post.deleteMany({}, (err, allPost) => {
-    testing_User.forEach(user => {
-      bcrypt.genSalt(10, (err, salt) => {
-        if (err)
-          return res.status(500).json({
-            status: 500,
-            message: 'Something went wrong. Please try again'
-          });
+db.Location.deleteMany({}, (err, locations) => {
+  db.User.deleteMany({}, (err, allUser) => {
+    db.Post.deleteMany({}, (err, allPost) => {
+      db.Location.create(location_list, (err, locations) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log('recreated all location');
+        console.log(`created ${locations.length} locations`)
+        createUserPost();
+      })
+      
+      // Generate Salt
+      
   
-        // Hash User Password
-        bcrypt.hash(user.password, salt, (err, hash) => {
-          if (err)
-            return res.status(500).json({
-              status: 500,
-              message: 'Something went wrong. Please try again'
-            });
-  
-          const newUser = {
-            username: user.username,
-            email: user.email,
-            password: hash
-          };
-  
-          db.User.create(newUser, (err, savedUser) => {
-            if (err) return res.status(500).json({ status: 500, message: err });
-            //put post create
-            test_posts.forEach(post => {
-              post.user = savedUser._id
-              console.log(post.user);
-              console.log(post);
-              db.Post.create(post, (err, newPost) => {
-                if (err) {
-                  console.log(err);
-                  return;
-                }
-              })
-            })
-            console.log('create a super user');
-            console.log(`with email of ${user.email} and password of ${user.password}`)
-            console.log(`created total ${test_posts.length} posts for ${user.username}!`)
-  
-          });
-        });
-      });
-    })
-    // Generate Salt
     
-
-  
+    });
   });
-});
+})
+
+
+const createUserPost = () => {
+  db.Location.find({} , (err, allLocation)=> {
+      for (let j = 0; j < testing_User.length; j++) {
+        const user = testing_User[j];
+          bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+              return console.error(err);
+            };
+      
+            // Hash User Password
+            bcrypt.hash(user.password, salt, (err, hash) => {
+              if (err) {
+                return console.error(err);
+                };
+      
+              const newUser = {
+                username: user.username,
+                email: user.email,
+                password: hash
+              };
+      
+              db.User.create(newUser, (err, savedUser) => {
+                if (err) return console.error(err);
+                //put post create
+                for (let i = 0; i < allLocation.length-4; i++) {
+                test_posts.forEach(post => {
+                  post.user = savedUser._id
+                  post.location = allLocation[i]
+                  console.log(post.user);
+                  console.log(post);
+                  db.Post.create(post, (err, newPost) => {
+                    if (err) {
+                      console.log(err);
+                      return;
+                    }
+                  })
+                })
+              }
+                console.log('create a super user');
+                console.log(`with email of ${user.email} and password of ${user.password}`)
+                console.log(`created total ${test_posts.length} posts for ${user.username}!`)
+      
+              });
+            });
+          });
+        
+      
+      
+    }
+    
+  })
+  
+}
