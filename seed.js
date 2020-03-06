@@ -82,22 +82,27 @@ const test_posts = [
   {
     title: "et consectetur adipisicing elit. Animi, nobis.",
     content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit,cessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!",
+    img:"https://upload.wikimedia.org/wikipedia/commons/2/29/Taipei%2C_Taiwan_CBD_Skyline.jpg"
   },
   {
     title: 'et consectetur adipisicing elit. Animi, nobis.',
     content: 'Lorem ipsum dolor sit amet consectetur sunt rerum! Est facilis molestiae cum optio animi ut minus. Qui, neque deleniti quasi eius hic non adipisci repellendus duero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
+    img: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Falexcapri%2Ffiles%2F2018%2F09%2FSingapore-1200x800.jpg"
   },
   {
     title: 'et consectetur adipisicing elit. Animi, nobis.',
     content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidunt veritatis nobis, culpa ut soluta? Voluptates id voluptatumvoluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
+    img:"https://media.allure.com/photos/5bf1b1502ab5072a91e1853a/2:1/w_3431,h_1715,c_limit/travel%20editor%20favorite%20products.jpg"
   },
   {
     title: 'et consectetur adipisicing elit. Animi, nobis.',
     content: 'tem necessitatibus earum at voluptatum et magnam deserunt, repudiandae hic alias rem exercitationem. Eveniet itaque ut voluptates vero. A harum quos accusamus perferendis distinctio ipsam rem, rerum ea!',
+    img: "https://www.traveller.com.au/content/dam/images/g/w/u/y/f/4/image.related.articleLeadwide.620x349.gwutg6.png/1507160048555.jpg"
   },
   {
     title: 't. Animi, nobis.',
     content: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos nam voluptas quam unde odit impedit, incidun cum opuos accusamus perferendis distinctio ipsam rem, rerum ea!',
+    img: "https://www.rssc.com/sites/default/files/M37_Mobile_AlaskaDestinationDetail-062119.jpg"
   }
 ]
 
@@ -175,8 +180,10 @@ const createUserPost = () => {
                       console.log(err);
                       return;
                     }
+
                   })
                 })
+                
               }
                 console.log('create a super user');
                 console.log(`with email of ${user.email} and password of ${user.password}`)
@@ -193,3 +200,4 @@ const createUserPost = () => {
   })
   
 }
+

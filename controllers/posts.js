@@ -11,6 +11,7 @@ const create = async (req, res) => {
             content: createdPost.content,
             createdAt: createdPost.createdAt,
             location: createdPost.location,
+            img: createdPost.img
         };
         res.status(200).json(responseObj);
     } catch (error) {
@@ -19,6 +20,7 @@ const create = async (req, res) => {
 };
 
 const show = async (req, res) => {
+    console.log('showwwww')
     try {
         const foundPost = await db.Post.findById(req.params.id).populate('location').populate('user')
         const Post = {
@@ -28,6 +30,7 @@ const show = async (req, res) => {
             user: foundPost.user,
             location: foundPost.location,
             createdAt: foundPost.createdAt,
+            img: foundPost.img
         };
         res.status(200).json(Post);
     } catch (error) {
@@ -37,22 +40,25 @@ const show = async (req, res) => {
 
 const userAllPosts = async (req, res) => {
     try {
-        const allPosts = await db.Post.find({ user: req.curUserId });
-        let postList = [];
-        for (let i = 0; i < allPosts.length; i++) {
-            let responseObj = {
-                id: allPosts[i]._id,
-                title: allPosts[i].title,
-                content: allPosts[i].content,
-                createdAt: allPosts[i].createdAt,
-            };
-            postList.push(responseObj);
-        };
-        res.status(200).json(postList);
+        console.log('user', req.curUserId);
+        const allPosts = await db.Post.find({});
+        console.log('allPosts', allPosts);
+        res.status(200).json(allPosts);
     } catch (error) {
+        console.log('user', req.curUserId);
         return res.status(500).json({ message: 'Something went wrong, try again', error: error });
     };
 };
+const userposts = async (req, res) => {
+    console.log('userpostsuserpostsuserpostsuserpostsuserposts')
+    try {
+        const userposts = await db.Post.find({user: req.curUserId}).populate('location').populate('user')
+        res.status(200).json(userposts)
+    }
+    catch {
+        return res.status(500).json({message: 'inuser post wrong'})
+    }
+}
 
 const showAll = async (req, res) => {
     try {
@@ -79,6 +85,7 @@ const update = async (req, res) => {
                 content: foundPost.content,
                 location: foundPost.location,
                 createdAt: foundPost.createdAt,
+                img: foundPost.img
             };
             res.status(200).json(responseObj)
         } else {
@@ -97,23 +104,8 @@ const showcity = async (req, res)=> {
         return res.status(500).json({ message: 'Something went wrong, try again', error: error })
     }
 }
-// const update = async (req, res) => {
-//     try {
-//         if (req.curUserId = Post.user) {
-//             const updatedPost = await db.Post.findByIdAndUpdate(req.params.id, req.body);
-//             const responseObj = {
-//                 id: updatedPost.id,
-//                 title: updatedPost.title,
-//                 content: updatedPost.content,
-//                 location: updatedPost.location,
-//                 createdAt: updatedPost.createdAt
-//             };
-//             res.status(200).json(responseObj);
-//         };
-//     } catch (error) {
-//         return res.status(500).json({message: 'Something went wrong, please try again', error: error});
-//     };
-// };
+
+
 
 const destroy = async (req, res) => {
     try {
@@ -143,5 +135,6 @@ module.exports = {
     showAll,
     showcity,
     update,
-    destroy
+    destroy,
+    userposts
 }
