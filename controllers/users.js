@@ -2,8 +2,8 @@ const db = require('../models');
 
 const show = async (req, res) => {
 	try {
-		console.log('curUserId',req.curUserId);
-		const foundUser = await db.User.findById(req.curUserId).populate('location')
+		console.log('curUserId in usershow',req.curUserId);
+		const foundUser = await db.User.findById(req.curUserId).populate('location').populate('user')
 		// const foundPosts = await db.Post.find({ user: foundUser._id }).populate('location');
 		const User = {
 			'username':foundUser.username,

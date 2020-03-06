@@ -2,6 +2,7 @@ const db = require('../models');
 
 const create = async (req, res) => {
     try {
+        console.log('in create', req.curUserId)
         // NOTE - 'curUserId' grabs User ID from jwt token
         const createdPost = await db.Post.create({ ...req.body, user: req.curUserId });
         const responseObj = {
@@ -90,7 +91,7 @@ const update = async (req, res) => {
 
 const showcity = async (req, res)=> {
     try{
-        const CityPosts = await db.Post.find({location: req.params.id}).populate('location').populate('user')
+        const CityPosts = await db.Post.find({location: req.params.id}).populate('location').populate('user').sort({createdAt: -1})
         res.status(200).json(CityPosts);
     } catch {
         return res.status(500).json({ message: 'Something went wrong, try again', error: error })

@@ -11,11 +11,12 @@ router.get('/', ctrl.posts.showAll);
 router.get('/city/:id', ctrl.posts.showcity)
 // Controller To Show Single Post
 router.get('/:id', ctrl.posts.show);
+// Controller To Create Single Post
+router.post('/create', mw.auth.verify, ctrl.posts.create);
+
 // Controller For Single User To Show All Of Their Own Posts
 router.get('/userall', mw.auth.verify, ctrl.posts.userAllPosts);
 
-// Controller To Create Single Post
-router.post('/create', mw.auth.verify, ctrl.posts.create);
 
 
 
