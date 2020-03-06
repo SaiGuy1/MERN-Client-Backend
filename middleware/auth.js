@@ -2,8 +2,11 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
+
 const verify = (req, res, next) => {
+  console.log('req.headers',req.headers)
   const header = req.headers.authorization;
+  console.log('header in auth verify',req.headers.authorization);
   if (typeof header !== 'undefined') {
     const bearer = header.split(' ');
     const token = bearer[1];

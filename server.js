@@ -4,7 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
 const cors = require('cors');
-
+const morgan = require('morgan');
 
 //access env file
 require('dotenv').config();
@@ -20,7 +20,7 @@ const coresOptions = {
   optionsSuccessStatus: 200 //legacy browser choke on status 204 
 }
 app.use(cors(coresOptions))
-
+app.use(morgan('dev'));
 //BodyParser
 app.use(bodyParser.json());
 

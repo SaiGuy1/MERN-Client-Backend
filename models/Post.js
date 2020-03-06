@@ -23,6 +23,9 @@ const PostSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    img: {
+        type: String,
+    }
 });
 
 const Post = mongoose.model('Post', PostSchema);
