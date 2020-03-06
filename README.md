@@ -49,6 +49,7 @@ and you should be good to go!
   }}
 or you will get an err.
 
+<!-- ========== ROUTES / CONTROLLERS ========== -->
 
 ### user profile
 route: api/v1/profile/
@@ -82,15 +83,12 @@ api/v1/location
     }
 
 
-### Create Post Controller:
-api/v1/posts
-  - remember to send token via header, see above
--POST
-  - req: {
-    title:'',
-    content: '',
-  }
+ <!-- >>>> userAllPosts ROUTE / CONTROLLER -->
+    <!-- We cannot get all posts from a single User using the "showAll" route because it would expose the User ID when used as a parameter.
+    Instead, this route utilizes the jwt token within a header to provide the User DB the User ID and return all associate posts. -->
 
-##### note
-  - For db.Post.create, pass in a single object as an argument that contains the 'req.body' as well as the 'req.curUserId'.
-  - Ensure you DO NOT share the userId by creating a 'responseObj' object that only contains the (A) post id, (B) title, (C) content, (D) createdAt.
+ <!-- >>>> showAll ROUTE / CONTROLLER -->
+    <!-- Filter posts by adding a query/queries. -->
+
+ <!-- >>>> Update / Destroy ROUTES / CONTROLLERS -->
+    <!-- Authentication on both these routes/controllers to ensure that users can only edit / delete their own posts, not those created by other users on the application. -->
